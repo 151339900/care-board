@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   scope module: :public do
     root :to =>"homes#top"
     get '/about' => 'homes#about'
-    post 'posts' => 'posts#create'
-    
-    
+    post '/posts' => 'posts#create'
+    resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+    end
+
+
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
