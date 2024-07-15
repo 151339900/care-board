@@ -7,8 +7,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root :to =>"homes#top"
-    get '/about' => 'homes#about'
+    get 'posts/new'
     post '/posts' => 'posts#create'
+    get '/about' => 'homes#about'
+    get 'posts' => 'posts#index'
+    get 'posts/:id' => 'posts#show'
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
     end
 

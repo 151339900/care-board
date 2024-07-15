@@ -1,0 +1,10 @@
+<h1>投稿一覧</h1>
+
+<% @posts.each do |post| %>
+
+  <p>タイトル</p>
+  <span><%= post.title %></span>
+  <p>内容</p>
+  <span><%= post.discription %></span>
+
+<% end %>
