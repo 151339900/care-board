@@ -1,0 +1,13 @@
+<div>
+  <h3><%= @user.last_name %></h3>
+</div>
+
+<!-- ユーザーの投稿一覧 -->
+
+<% @posts.each do |post| %>
+
+ <p>タイトル</p>
+ <span>
+   <%= link_to post.title, post_path(post.id) %>
+ </span>
+<% end %>
