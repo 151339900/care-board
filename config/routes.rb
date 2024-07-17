@@ -16,9 +16,10 @@ Rails.application.routes.draw do
     patch 'posts/:id' => 'posts#update', as: 'update_post'
     delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+      resource :favorite, only: [:create, :destroy]
     end
-
-
+    resources :users, only: [:show, :edit, :update] do
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
