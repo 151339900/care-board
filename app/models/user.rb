@@ -6,4 +6,20 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :favorites
+  
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("last_name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("last_name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("last_name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("last_name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
+  
 end

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
     patch 'posts/:id' => 'posts#update', as: 'update_post'
     delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
+    get "search" => "searches#search"
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
       resource :favorite, only: [:create, :destroy]
     end
