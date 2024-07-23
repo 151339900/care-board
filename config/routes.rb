@@ -1,9 +1,31 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+
   devise_for :users,skip: [:passwords], controllers: {
-     registrations: "public/registrations",
-     sessions: 'public/sessions'
-   }
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+
+  namespace :admin do
+    get :about, to: "homes#about"
+    resources :genres, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+    end
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+	  end
+	  resources :users, only: [:show] do
+	    collection do
+      
+      end
+      member do 
+        patch 'withdraw'
+        get 'unsubscribe'
+      end
+	  end   
+    get "search" => "searches#search"
+  end
 
   scope module: :public do
     root :to =>"homes#top"
@@ -15,10 +37,16 @@ Rails.application.routes.draw do
     get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
     patch 'posts/:id' => 'posts#update', as: 'update_post'
     delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
+    get "search" => "searches#search"
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
       resource :favorite, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
     resources :users, only: [:show, :edit, :update] do
+      collection do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
     end
   end
 

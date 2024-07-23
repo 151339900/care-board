@@ -7,6 +7,26 @@
 <%= link_to "編集", edit_post_path(@post.id) %>
 <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 
+<div>
+  <p>コメント件数：<%= @post.comments.count %></p>
+  <% @post.comments.each do |comment| %>
+    <%= comment.user.nick_name %>
+    <%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %>
+    <div>
+      <%= comment.comment %>
+    </div>
+    <% if comment.user == current_user %>
+      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+
 <% if @post.favorited_by?(current_user) %>
     <p>
       <%= link_to post_favorite_path(@post), method: :delete do %>
