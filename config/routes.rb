@@ -15,7 +15,15 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :comments, only: [:destroy]
 	  end
-	  resources :users, only: [:show]
+	  resources :users, only: [:show] do
+	    collection do
+      
+      end
+      member do 
+        patch 'withdraw'
+        get 'unsubscribe'
+      end
+	  end   
     get "search" => "searches#search"
   end
 
@@ -35,6 +43,10 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :users, only: [:show, :edit, :update] do
+      collection do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
     end
   end
 

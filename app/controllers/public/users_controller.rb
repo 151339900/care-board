@@ -14,6 +14,16 @@ class Public::UsersController < ApplicationController
     redirect_to user_path
   end
 
+  def unsubscribe
+  end
+
+  def withdraw
+    # @customerをcurrent_customerに変更
+    current_user.update(is_active: false)
+    reset_session
+    redirect_to admin_about_path
+  end
+
 
   private
 

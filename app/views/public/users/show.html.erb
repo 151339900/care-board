@@ -6,7 +6,8 @@
   <h3><%= @user.introduction %></h3>
 </div>
 
-<%= link_to "編集", edit_user_path(@user) %>
+<%= link_to "編集", edit_user_path(current_user) %>
+<%= link_to "退会", unsubscribe_users_path %>
 
 <!-- ユーザーの投稿一覧 -->
 
