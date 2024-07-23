@@ -6,8 +6,6 @@
   <h3><%= @user.introduction %></h3>
 </div>
 
-<%= link_to "編集", edit_user_path(@user) %>
-
 <!-- ユーザーの投稿一覧 -->
 
 <% @posts.each do |post| %>
@@ -16,5 +14,4 @@
  <span>
    <%= link_to post.title, post_path(post.id) %>
  </span>
- <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
 <% end %>

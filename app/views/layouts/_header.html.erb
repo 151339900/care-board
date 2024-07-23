@@ -1,5 +1,6 @@
 <body>
   <header>
+    <!--会員ログイン時のヘッダー-->
     <% if user_signed_in? %>
       <li>
         <%= link_to '投稿フォーム', posts_new_path %>
@@ -8,8 +9,26 @@
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       </li>
       <li>
+        <%= link_to "投稿一覧", posts_path %>
+      </li>
+      <li>
+        <%= link_to "プロフィール編集", edit_user_path(current_user) %>
+      </li>
+      <li>
         <%= render 'layouts/search' %>
       </li>
+      <!--管理者ログイン時のヘッダー-->
+    <% elsif admin_signed_in? %>
+      <li>
+        <%= link_to "投稿一覧", admin_posts_path %>
+      </li>
+      <li>
+        <%= link_to "ジャンル作成", new_admin_genre_path %>
+      </li>
+      <li>
+        <%= render 'layouts/search' %>
+      </li>
+      <!--ログイン前のヘッダー-->
     <% else %>
       <li>
         <%= link_to "新規登録", new_user_registration_path %>
