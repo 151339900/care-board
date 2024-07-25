@@ -3,9 +3,11 @@
 <% @posts.each do |post| %>
 
   <p>タイトル</p>
+
   <span>
     <%= link_to post.title, admin_post_path(post.id) %>
   </span>
+  <p><%= post.genre.name %></p>
   <p><%= link_to "#{post.comments.count} コメント", admin_post_path(post.id) %></p>
 
 <% end %>
