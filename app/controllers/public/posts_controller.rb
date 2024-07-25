@@ -37,7 +37,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :discription,)
+    params.require(:post).permit(:title, :discription, :genre_id)
   end
 
 end

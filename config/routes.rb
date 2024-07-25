@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   namespace :admin do
     get :about, to: "homes#about"
@@ -16,14 +20,11 @@ Rails.application.routes.draw do
       resources :comments, only: [:destroy]
 	  end
 	  resources :users, only: [:show] do
-	    collection do
-      
-      end
-      member do 
+      member do
         patch 'withdraw'
         get 'unsubscribe'
       end
-	  end   
+	  end
     get "search" => "searches#search"
   end
 
@@ -42,14 +43,16 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
+
     resources :users, only: [:show, :edit, :update] do
+
       collection do
         get 'unsubscribe'
         patch 'withdraw'
       end
     end
   end
-
+ end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
 
   # 顧客用ログイン
@@ -64,4 +67,3 @@ Rails.application.routes.draw do
   # devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   #   sessions: "admin/sessions"
   # }
-end
