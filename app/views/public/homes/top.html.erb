@@ -1,1 +1,39 @@
-Homes#top
+<h1>Care Boardへようこそ</h1>
+<p class="text-center">
+ <h4>
+  Care Boardは、在宅介護をしている方々が情報を共有し合うための<br>
+  オンラインプラットフォームです。介護に関する知識や経験、リソースを<br>
+  提供し合うことで介護の負担を軽減し、介護者様が、より良いケアを<br>
+  実現できるようサポートします。
+ </h4>
+</p>
+
+
+<div class="row mt-3">
+
+  <div class = "col-md-6">
+    <h4>お悩みを共有する</h4>
+    <button type="button" class="btn btn-success btn-lg">
+      <%= link_to '投稿する', posts_new_path, class: 'nav-link text-dark' %>
+    </button>
+    <h6>
+      お悩みを投稿してみましょう。同じお悩みを持った方、過去に経験のある方から<br>
+      アドバイスを貰えるかも？またお悩み以外でも、利用サービスの良かったところ、<br>
+      もう少しこうして欲しかったところ、等も投稿してみましょう。これからサービスを<br>
+      利用しようとしている方の参考になります。
+    </h6>
+  </div>
+
+  <div class = "col-md-6">
+    <h4>介護者の投稿をみてみよう</h4>
+    <button type="button" class="btn btn-success btn-lg">
+      <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %>
+    </button>
+    <h6>
+      日々、ご家族と向き合う介護者の投稿を見てみましょう。同じ悩みや、大変だったことの共有は、<br>
+      孤立を防ぐ、負担を軽くする点において大きなメリットと言えます。また、投稿にコメントを<br>
+      することも出来ますので、質問や、共感したことなどをコメントしてみましょう。<br>
+    </h6>
+  </div>
+
+</div>

@@ -13,6 +13,9 @@
   <body>
     <!--headerの呼び出し-->
     <%= render 'layouts/header' %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

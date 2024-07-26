@@ -1,13 +1,25 @@
-<h1>投稿一覧</h1>
+<div class= "container px-5 px-sm-0">
 
-<% @posts.each do |post| %>
+ <h1>投稿一覧</h1>
+
+  　<table class="table table-striped">
+      <% @posts.each do |post| %>
+        <tr>
+          <td>タイトル</td>
+          <td>
+            <%= link_to post.title, post_path(post.id) %>
+          </td>
+
+          <td>ニックネーム</td>
+          <td>
+            <%= post.genre.name %>
+          </td>
 
 
-  <p>タイトル</p>
-  <span>
-    <%= link_to post.title, post_path(post.id) %>
-  </span>
-  <p><%= post.genre.name %></p>
-
-  <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
-<% end %>
+          <td>
+            <%= link_to "#{post.comments.count} コメント数", post_path(post.id) %>
+          </td>
+        </tr>
+      <% end %>
+     </table>
+</div>
