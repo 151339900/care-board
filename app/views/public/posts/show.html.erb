@@ -1,42 +1,55 @@
 <h1>投稿詳細</h1>
-<h2>タイトル</h2>
-<p><%= @post.title %></p>
+<div class= "container">
+  <div class = "row">
+    <div class= "col-md-4 offset-4">
+      <h4>タイトル</h4>
+      <p><%= @post.title %></p>
 
-<h2>本文</h2>
-<p><%= @post.discription %></p>
-<%= link_to "編集", edit_post_path(@post.id) %>
-<%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      <h4>本文</h4>
+      <p><%= @post.discription %></p>
+      <button class = "btn btn-outline-success">
+        <%= link_to "編集", edit_post_path(@post.id) %>
+      </button>
 
-<div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <%= comment.user.nick_name %>
-    <%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %>
-    <div>
-      <%= comment.comment %>
+      <button class = "btn btn-outline-danger">
+        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </button>
+
+      <div>
+        <p>コメント件数：<%= @post.comments.count %></p>
+        <% @post.comments.each do |comment| %>
+          <%= comment.user.nick_name %>
+          <%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %>
+          <div>
+            <%= comment.comment %>
+          </div>
+          <% if comment.user == current_user %>
+          <button class = "btn btn-outline-danger">
+            <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+          </button>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@post, @comment] do |f| %>
+          <%= f.text_area :comment,class:"form-control", placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" ,class:"btn btn-outline-success btn-block" %>
+        <% end %>
+      </div>
+
+      <% if @post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorite_path(@post), method: :delete do %>
+              ♥<%= @post.favorites.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to post_favorite_path(@post), method: :post do %>
+              ♡<%= @post.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
     </div>
-    <% if comment.user == current_user %>
-      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-    <% end %>
-  <% end %>
+  </div>
 </div>
-<div>
-  <%= form_with model: [@post, @comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
-
-<% if @post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorite_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorite_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>

@@ -1,25 +1,25 @@
 <div class= "container px-5 px-sm-0">
-
  <h1>投稿一覧</h1>
-
-  　<table class="table table-striped">
-      <% @posts.each do |post| %>
-        <tr>
-          <td>タイトル</td>
-          <td>
-            <%= link_to post.title, post_path(post.id) %>
-          </td>
-
-          <td>ニックネーム</td>
-          <td>
-            <%= post.genre.name %>
-          </td>
-
-
-          <td>
-            <%= link_to "#{post.comments.count} コメント数", post_path(post.id) %>
-          </td>
-        </tr>
-      <% end %>
-     </table>
+  <table class="table table-striped">
+    <tr>
+      <td>タイトル</td>
+      <td>ニックネーム</td>
+      <td>ジャンル名</td>
+      <td>コメント数</td>
+    </tr>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= link_to post.title, post_path(post.id) %>
+        </td>
+        <td><%= post.user.nick_name %></td>
+        <td>
+          <%= post.genre.name %>
+        </td>
+        <td>
+          <%= link_to "#{post.comments.count} コメント", post_path(post.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>

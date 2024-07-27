@@ -4,9 +4,9 @@
 	<%= f.text_field :name, placeholder: "ジャンル名" %>
 
 	<% if f.object.new_record? %>
-		<%= f.submit "新規登録"%>
+		  <%= f.submit "新規登録", class:"btn btn-outline-success" %>
 	<% else %>
-		<%= f.submit "変更を保存"%>
+		  <%= f.submit "変更を保存", class:"btn btn-outline-success" %>
 	<% end %>
 
 <% end %>
