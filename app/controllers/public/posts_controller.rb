@@ -9,6 +9,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def create
@@ -36,7 +37,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :discription,)
+    params.require(:post).permit(:title, :discription, :genre_id)
   end
 
 end

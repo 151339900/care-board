@@ -1,0 +1,24 @@
+<div>
+  <h3><%= @user.nick_name %></h3>
+</div>
+
+<div>
+  <h3><%= @user.introduction %></h3>
+</div>
+
+<button class = "btn btn-outline-success">
+  <%= link_to "編集", edit_user_path(current_user) %>
+</button>
+<button class = "btn btn-outline-danger">
+  <%= link_to "退会", unsubscribe_users_path %>
+</button>
+<!-- ユーザーの投稿一覧 -->
+
+<% @posts.each do |post| %>
+
+ <p>タイトル</p>
+ <span>
+   <%= link_to post.title, post_path(post.id) %>
+ </span>
+ <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+<% end %>

@@ -1,9 +1,32 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+
   devise_for :users,skip: [:passwords], controllers: {
-     registrations: "public/registrations",
-     sessions: 'public/sessions'
-   }
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+  
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
+  namespace :admin do
+    get :about, to: "homes#about"
+    resources :genres, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+    end
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+	  end
+	  resources :users, only: [:show] do
+      member do
+        patch 'withdraw'
+        get 'unsubscribe'
+      end
+	  end
+    get "search" => "searches#search"
+  end
 
   scope module: :public do
     root :to =>"homes#top"
@@ -15,12 +38,21 @@ Rails.application.routes.draw do
     get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
     patch 'posts/:id' => 'posts#update', as: 'update_post'
     delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
+    get "search" => "searches#search"
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+      resource :favorite, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
 
+    resources :users, only: [:show, :edit, :update] do
 
+      collection do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
   end
-
+ end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
 
   # 顧客用ログイン
@@ -35,4 +67,3 @@ Rails.application.routes.draw do
   # devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   #   sessions: "admin/sessions"
   # }
-end

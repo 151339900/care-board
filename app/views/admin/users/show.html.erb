@@ -1,0 +1,18 @@
+<div>
+  <h3><%= @user.nick_name %></h3>
+</div>
+
+<div>
+  <h3><%= @user.introduction %></h3>
+</div>
+<%= link_to "ユーザーを削除する", unsubscribe_admin_user_path(@user) %>
+<!-- ユーザーの投稿一覧 -->
+
+<% @posts.each do |post| %>
+
+ <p>タイトル</p>
+ <span>
+   <%= link_to post.title, post_path(post.id) %>
+ </span>
+ <p><%= link_to "#{post.comments.count} コメント", admin_post_path(post.id) %></p>
+<% end %>
