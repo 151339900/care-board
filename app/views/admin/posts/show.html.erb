@@ -1,19 +1,28 @@
 <h1>投稿詳細</h1>
-<h2>タイトル</h2>
-<p><%= @post.title %></p>
+<div class= "container">
+  <div class = "row">
+    <div class= "col-md-4 offset-4">
+      <h4>タイトル</h4>
+      <p><%= @post.title %></p>
 
-<h2>本文</h2>
-<p><%= @post.discription %></p>
-<%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-
-<div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <%= comment.user.nick_name %>
-    <%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %>
-    <div>
-      <%= comment.comment %>
+      <h4>本文</h4>
+      <p><%= @post.discription %></p>
+      <button class = "btn btn-outline-danger">
+        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </button>
+      <div>
+        <p>コメント件数：<%= @post.comments.count %></p>
+        <% @post.comments.each do |comment| %>
+          <%= comment.user.nick_name %>
+          <%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %>
+          <div>
+            <%= comment.comment %>
+          </div>
+          <button class = "btn btn-outline-danger">
+            <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete %>
+          </button>  
+        <% end %>
+      </div>
     </div>
-      <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete %>
-  <% end %>
+  </div>
 </div>
