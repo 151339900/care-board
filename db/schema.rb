@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2024_07_24_101714) do
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.string "title", default: "", null: false
-    t.text "comment", default: "", null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2024_07_24_101714) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", default: "", null: false
-    t.text "discription", default: "", null: false
+    t.text "discription", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "genre_id"
