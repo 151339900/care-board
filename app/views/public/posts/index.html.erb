@@ -12,7 +12,8 @@
         <td>
           <%= link_to post.title, post_path(post.id) %>
         </td>
-        <td><%= post.user.nick_name %></td>
+        <td><%= link_to post.user.nick_name, "/users/#{post.user_id}" %></td>
+        <!-- post.user.nick_name -->
         <td>
           <%= post.genre.name %>
         </td>

@@ -1,4 +1,12 @@
 <h2>プロフィール編集</h2>
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div class = "container">
   <div class ="row">
     <div class= "col-md-4 offset-4">
@@ -9,6 +17,9 @@
       <%= f.text_area :introduction,class:"form-control", autofocus: true %>
       <%= f.submit %>
       <% end %>
+      <button class = "btn btn-outline-danger">
+         <%= link_to "退会", unsubscribe_users_path %>
+      </button>
     </div>
   </div>
 </div>
