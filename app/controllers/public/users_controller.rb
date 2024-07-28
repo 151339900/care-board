@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
     # @customerをcurrent_customerに変更
     current_user.update(is_active: false)
     reset_session
-    redirect_to admin_about_path
+    redirect_to new_user_session_path
   end
 
 
