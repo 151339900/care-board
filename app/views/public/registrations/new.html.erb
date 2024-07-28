@@ -10,6 +10,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :introduction, "自己紹介" %><br>
+    <%= f.text_field :introduction %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
