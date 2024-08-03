@@ -6,6 +6,7 @@
        <td>ニックネーム</td>
        <td>ジャンル名</td>
        <td>コメント数</td>
+       <td>コメント点数平均</td>
     </tr>
     <% @posts.each do |post| %>
       <tr>
@@ -13,6 +14,7 @@
        <td><%= post.user.nick_name %></td>
        <td><%= post.genre.name %></td>
        <td><%= link_to "#{post.comments.count} コメント", admin_post_path(post.id) %></td>
+       <td><%= post.comments.pluck(:score).sum.fdiv(post.comments.count) %></td>
       </tr>
     <% end %>
   </table>
