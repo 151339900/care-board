@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+
    def show
     @user = User.find(params[:id])
     @posts = @user.posts
@@ -15,8 +17,7 @@ class Admin::UsersController < ApplicationController
   def withdraw
     @user = User.find(params[:id])
     @user.update(is_active: false)
-    reset_session
     #新規会員登録画面に遷移
-    redirect_to admin_user_path(@user)
+    redirect_to admin_posts_path
   end
 end

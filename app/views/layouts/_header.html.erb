@@ -52,7 +52,7 @@
            </li>
 
            <li class="nav-item" href="#">
-             <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
            </li>
 
            <li class="nav-item" href="#">
