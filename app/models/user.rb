@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :nick_name, presence: true
   validates :introduction, presence: true
 
+  default_scope { where(is_active: true) }
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

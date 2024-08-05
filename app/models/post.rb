@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   validates :genre, presence: true
   validates :discription, presence: true
 
+  default_scope { joins(:user).where(user: {is_active: true}) }
+
  # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
