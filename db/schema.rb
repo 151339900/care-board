@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2024_08_03_021951) do
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "score", precision: 5, scale: 3
+    t.decimal "score", precision: 5, scale: 3, default: "0.0"
   end
 
   create_table "favorites", force: :cascade do |t|
