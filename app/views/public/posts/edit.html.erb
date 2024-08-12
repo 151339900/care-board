@@ -1,13 +1,13 @@
-<h1>編集画面</h1>
+<h1 class= "text-secondary">編集画面</h1>
 
 <%= form_with model: @post, url: update_post_path(@post.id), method: :patch do |f| %>
 
-  <h4>タイトル</h4>
+  <h4 class= "text-secondary">タイトル</h4>
   <%= f.text_field :title %>
-  
-  <h4>本文</h4>
+
+  <h4 class= "text-secondary">本文</h4>
   <%= f.text_area :discription %>
-  
+
   <%= f.submit '保存' %>
-  
+
 <% end %>

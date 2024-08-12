@@ -1,4 +1,4 @@
-<h1>投稿詳細</h1>
+<h1 class= "text-secondary">投稿詳細</h1>
 <% if @post.errors.any? %>
   <%= @post.errors.count %>件のエラーが発生しました
   <ul>
@@ -11,13 +11,13 @@
   <div class = "row">
     <div class= "col-md-4 offset-4">
 
-      <h4>ニックネーム</h4>
+      <h4 class= "text-secondary">ニックネーム</h4>
       <p><%= link_to @post.user.nick_name, "/users/#{@post.user_id}" %></p>
 
-      <h4>タイトル</h4>
+      <h4 class= "text-secondary">タイトル</h4>
       <p><%= @post.title %></p>
 
-      <h4>本文</h4>
+      <h4 class= "text-secondary">本文</h4>
       <p><%= @post.discription %></p>
       <button class = "btn btn-outline-success">
         <%= link_to "編集", edit_post_path(@post.id) %>
@@ -28,7 +28,7 @@
       </button>
 
       <div>
-        <p>コメント件数：<%= @post.comments.count %></p>
+        <p class= "text-secondary">コメント件数：<%= @post.comments.count %></p>
         <% @post.comments.each do |comment| %>
           <%= comment.user.nick_name %>
           <%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %>
