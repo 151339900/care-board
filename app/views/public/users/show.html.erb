@@ -1,10 +1,10 @@
-<h1>ユーザーページ</h1>
+<h1 class= "text-secondary">ユーザーページ</h1>
 <div>
-  <h3><%= @user.nick_name %></h3>
+  <h3 class= "text-secondary"><%= @user.nick_name %></h3>
 </div>
 
 <div>
-  <h3><%= @user.introduction %></h3>
+  <h3 class= "text-secondary"><%= @user.introduction %></h3>
 </div>
 
 <button class = "btn btn-outline-success">
@@ -14,9 +14,9 @@
 
 <% @posts.each do |post| %>
 
- <p>タイトル</p>
+ <p class= "text-secondary">タイトル</p>
  <span>
    <%= link_to post.title, post_path(post.id) %>
  </span>
- <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+ <p class= "text-secondary"><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
 <% end %>
