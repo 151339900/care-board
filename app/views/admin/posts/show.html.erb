@@ -1,24 +1,26 @@
-<h1>投稿詳細</h1>
+<h1 class= "text-secondary">投稿詳細</h1>
 <div class= "container">
   <div class = "row">
     <div class= "col-md-4 offset-4">
-      <h4>タイトル</h4>
+      <h4 class= "text-secondary">タイトル</h4>
       <p><%= @post.title %></p>
 
-      <h4>本文</h4>
+      <h4 class= "text-secondary">本文</h4>
       <p><%= @post.discription %></p>
       <button class = "btn btn-outline-danger">
         <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
       </button>
       <div>
-        <p>コメント件数：<%= @post.comments.count %></p>
+        <p class= "text-secondary">コメント件数：<%= @post.comments.count %></p>
         <% @post.comments.each do |comment| %>
-          <%= comment.user.nick_name %>
-          <%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %>
-          <div>
+          <div class= "text-secondary">
+            <%= comment.user.nick_name %>
+            <%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %>
+          </div>
+          <div class= "text-secondary">
             <%= comment.comment %>
           </div>
-          <div>
+          <div class= "text-secondary">
             <%= comment.score %>
             <% if comment.score < -0.7  %>
 　　          <p>※非常にネガティブなコメントです。トラブル回避のため、不要な場合は削除することを推奨します※</p>

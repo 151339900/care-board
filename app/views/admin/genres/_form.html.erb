@@ -1,8 +1,6 @@
 <%= form_with model: [:admin, genre], local: true do |f| %>
-
 	<%= f.label :"ジャンル名" %>
-	<%= f.text_field :name, placeholder: "ジャンル名" %>
-
+	<%= f.text_field :name, placeholder: "ジャンル名" %> 
 	<% if f.object.new_record? %>
 		  <%= f.submit "新規登録", class:"btn btn-outline-success" %>
 	<% else %>
