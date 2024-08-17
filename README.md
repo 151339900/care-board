@@ -19,9 +19,11 @@
 
 ​
 ## 設計書
-後ほど作成予定
 ・テーブル定義書 URL
 https://docs.google.com/spreadsheets/d/1AA5jjQwMbKrFWEWzdrYJF8xkLD29mlqf/edit?usp=sharing&ouid=115129018438735838195&rtpof=true&sd=true
+
+・アプリケーション詳細設計 URL
+https://docs.google.com/spreadsheets/d/1RsEJRCdC-Ao2VqyjJC-dS66WZrgwv7Icq_YTrHB0Wvk/edit?usp=sharing
 
 ​
 ## 開発環境
