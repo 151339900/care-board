@@ -12,7 +12,7 @@
     <div class= "col-md-4 offset-4">
 
       <h4 class= "text-secondary">ニックネーム</h4>
-      <p><%= link_to @post.user.nick_name, "/users/#{@post.user_id}" %></p>
+      <p><%= link_to @post.user.nick_name, "/users/#{@post.user_id}", class:"link" %></p>
 
       <h4 class= "text-secondary">タイトル</h4>
       <p><%= @post.title %></p>
@@ -20,11 +20,11 @@
       <h4 class= "text-secondary">本文</h4>
       <p><%= @post.discription %></p>
       <button class = "btn btn-outline-success">
-        <%= link_to "編集", edit_post_path(@post.id) %>
+        <%= link_to "編集", edit_post_path(@post.id), class:"link" %>
       </button>
 
       <button class = "btn btn-outline-danger">
-        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <%= link_to "削除", post_path(@post.id), class:"link", method: :delete, "data-confirm" => "本当に削除しますか？" %>
       </button>
 
       <div>
@@ -51,13 +51,13 @@
 
       <% if @post.favorited_by?(current_user) %>
           <p>
-            <%= link_to post_favorite_path(@post), method: :delete do %>
+            <%= link_to post_favorite_path(@post), class:"link", method: :delete do %>
               ♥<%= @post.favorites.count %> いいね
             <% end %>
           </p>
           <% else %>
           <p>
-            <%= link_to post_favorite_path(@post), method: :post do %>
+            <%= link_to post_favorite_path(@post), class:"link", method: :post do %>
               ♡<%= @post.favorites.count %> いいね
             <% end %>
           </p>
