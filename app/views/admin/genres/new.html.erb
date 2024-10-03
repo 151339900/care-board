@@ -10,7 +10,7 @@
 		<% @genres.each do |genre| %>
 			<tr>
 				<td class= "text-secondary"><%= genre.name %></td>
-				<td class= "text-secondary"><%= link_to "編集する", edit_admin_genre_path(genre) %></td>
+				<td class= "text-secondary"><%= link_to "編集する", edit_admin_genre_path(genre), class:"link" %></td>
 			</tr>
 		<% end %>
 	</table>
