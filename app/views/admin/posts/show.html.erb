@@ -8,7 +8,7 @@
       <h4 class= "text-secondary">本文</h4>
       <p><%= @post.discription %></p>
       <button class = "btn btn-outline-danger">
-        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" , class:"link" %>
       </button>
       <div>
         <p class= "text-secondary">コメント件数：<%= @post.comments.count %></p>
@@ -27,7 +27,7 @@
             <% end %>
           </div>
           <button class = "btn btn-outline-danger">
-            <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete %>
+            <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, class:"link" %>
           </button>
         <% end %>
       </div>
